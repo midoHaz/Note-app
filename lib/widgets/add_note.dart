@@ -9,9 +9,7 @@ class AddNoteBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Padding(
       padding: EdgeInsets.symmetric(horizontal: 16.0),
-      child: SingleChildScrollView(
-        child: AddNoteForm(),
-      ),
+      child: SingleChildScrollView(child: AddNoteForm()),
     );
   }
 }
