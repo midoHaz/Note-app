@@ -1,11 +1,12 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:note_app/models/note_model.dart';
 
 class CustomNoteItem extends StatelessWidget {
-  const CustomNoteItem({Key? key, required this.color,}) : super(key: key);
+  const CustomNoteItem({Key? key, required this.note,}) : super(key: key);
 
-  final Color color;
+  final NoteModel note;
   @override
   Widget build(BuildContext context) {
     return  ClipRRect(
@@ -16,22 +17,22 @@ class CustomNoteItem extends StatelessWidget {
           width: double.infinity,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(25),
-            color: color.withOpacity(.05),
+            color: Color(note.color),
           ),
           child:Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [ListTile(
-              title:const  Text("FLUTTER TIPS",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 24),),
+              title:Text(note.title,style: const TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 24),),
               subtitle: Padding(
                 padding: const EdgeInsets.only(top: 16.0),
-                child: Text("3 videos in playlist every Flutter widget",style: TextStyle(color: Colors.white.withOpacity(.4)),),
+                child: Text(note.subTitle,style: TextStyle(color: Colors.white.withOpacity(.4)),),
               ),
               trailing:IconButton(onPressed: (){}, icon: const Icon(Icons.delete,size: 30,)) ,
             ),
 
               Padding(
                 padding:const  EdgeInsets.only(right: 26.0,top: 16),
-                child: Text("27 Nov ,2023",style: TextStyle(color: Colors.white.withOpacity(.4)),),
+                child: Text(note.date,style: TextStyle(color: Colors.white.withOpacity(.4)),),
               ),
             ],
           ),
