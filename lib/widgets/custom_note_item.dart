@@ -27,7 +27,9 @@ class CustomNoteItem extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 16.0),
                 child: Text(note.subTitle,style: TextStyle(color: Colors.white.withOpacity(.4)),),
               ),
-              trailing:IconButton(onPressed: (){}, icon: const Icon(Icons.delete,size: 30,)) ,
+              trailing:IconButton(onPressed: (){
+                note.delete();
+              }, icon: const Icon(Icons.delete,size: 30,)) ,
             ),
 
               Padding(
