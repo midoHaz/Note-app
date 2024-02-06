@@ -6,8 +6,8 @@ import 'package:note_app/views/edit_note_view.dart';
 import 'package:note_app/widgets/custom_note_item.dart';
 
 class NotesListView extends StatelessWidget {
-  const NotesListView({Key? key}) : super(key: key);
-
+  const NotesListView({Key? key, required this.note}) : super(key: key);
+  final NoteModel note;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<NotesCubit, NotesState>(
@@ -22,7 +22,7 @@ class NotesListView extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 4.0),
               child: GestureDetector(onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (
-                    context) => const EditNoteView()));
+                    context) =>EditNoteView(note: note,)));
               }, child:CustomNoteItem(note: notes[index],)),
             );
           }),
