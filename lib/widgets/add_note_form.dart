@@ -10,23 +10,23 @@ import 'package:note_app/widgets/custom_text_field.dart';
 
 class AddNoteForm extends StatefulWidget {
   const AddNoteForm({
-    super.key,
-  });
+    Key? key,
+  }):super(key: key);
 
   @override
-  _AddNoteFormState createState() => _AddNoteFormState();
+  State<AddNoteForm> createState() => _AddNoteFormState();
 }
 
 class _AddNoteFormState extends State<AddNoteForm> {
-  final GlobalKey<FormState> formkey = GlobalKey();
-  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+  final GlobalKey<FormState> formKey = GlobalKey();
+  AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
   String? title, subTitle;
 
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: formkey,
-      autovalidateMode: autovalidateMode,
+      key: formKey,
+      autovalidateMode: autoValidateMode,
       child: Column(
         children: [
           const SizedBox(
@@ -59,10 +59,10 @@ class _AddNoteFormState extends State<AddNoteForm> {
               return CustomButton(
                 isLoading: state is AddNoteLoading ? true : false,
                 onTap: () {
-                  if (formkey.currentState!.validate()) {
-                    formkey.currentState!.save();
+                  if (formKey.currentState!.validate()) {
+                    formKey.currentState!.save();
                     var currentDate = DateTime.now();
-                    var dateFormat = DateFormat().add_yMd().format(currentDate);
+                    var dateFormat = DateFormat('dd-mm-yyyy').format(currentDate);
                     var noteModel = NoteModel(
                         title: title!,
                         subTitle: subTitle!,
@@ -70,7 +70,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
                         color: Colors.blueAccent.value);
                     BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
                   } else {
-                    autovalidateMode = AutovalidateMode.always;
+                    autoValidateMode = AutovalidateMode.always;
                     setState(() {
 
                     });
